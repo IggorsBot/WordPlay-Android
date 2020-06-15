@@ -3,18 +3,16 @@ package com.gogabot.englishwords
 import android.R.attr.x
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
-import android.widget.*
-import android.widget.LinearLayout
+import android.widget.GridLayout
+import android.widget.RelativeLayout
+import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import com.gogabot.englishwords.dictionary.Dictionary
 import com.gogabot.englishwords.dictionary.IDictionary
 
@@ -80,7 +78,15 @@ class MainActivity : AppCompatActivity() {
         for (i in 1..10) {
             val dictionary: IDictionary = Dictionary(context)
             dictionary.id = i
-            dictionary.name = "Cловарь $i."
+
+            dictionary.dictionaryView.setOnClickListener(object: View.OnClickListener {
+                override fun onClick(view: View) {
+                    Log.d(TAG, "Touch ${dictionary.name}")
+                    val intent = Intent(this@MainActivity, ListWordsInDictionary::class.java)
+                    intent.putExtra("DICTIONARY_ID", dictionary.id)
+                    startActivity(intent)
+                }
+            })
 
             dictListArray.add(dictionary)
         }
