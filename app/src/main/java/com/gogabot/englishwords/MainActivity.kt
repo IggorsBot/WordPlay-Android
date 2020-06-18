@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity() {
 
             dictionary.dictionaryView.setOnClickListener(object: View.OnClickListener {
                 override fun onClick(view: View) {
-                    Log.d(TAG, "Touch ${dictionary.name}")
                     val intent = Intent(this@MainActivity, ListWordsInDictionary::class.java)
                     intent.putExtra("DICTIONARY_ID", dictionary.id)
                     startActivity(intent)
