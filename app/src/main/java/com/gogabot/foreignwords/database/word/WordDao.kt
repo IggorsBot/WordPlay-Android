@@ -1,11 +1,11 @@
-package com.gogabot.englishwords.database.word
+package com.gogabot.foreignwords.database.word
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.gogabot.englishwords.database.word.Word
+import com.gogabot.foreignwords.database.word.Word
 import java.util.*
 
 @Dao

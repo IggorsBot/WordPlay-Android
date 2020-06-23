@@ -1,10 +1,10 @@
-package com.gogabot.englishwords.database.word
+package com.gogabot.foreignwords.database.word
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.gogabot.englishwords.database.dictionary.Dictionary
+import com.gogabot.foreignwords.database.dictionary.Dictionary
 import java.util.*
 
 

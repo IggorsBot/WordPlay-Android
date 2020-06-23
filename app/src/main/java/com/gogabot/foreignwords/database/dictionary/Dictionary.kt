@@ -1,9 +1,7 @@
-package com.gogabot.englishwords.database.dictionary
+package com.gogabot.foreignwords.database.dictionary
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 
 @Entity(tableName = "dictionary_table")

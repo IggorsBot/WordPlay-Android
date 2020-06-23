@@ -1,14 +1,14 @@
-package com.gogabot.englishwords.database
+package com.gogabot.foreignwords.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.gogabot.englishwords.database.dictionary.Dictionary
-import com.gogabot.englishwords.database.dictionary.DictionaryDao
-import com.gogabot.englishwords.database.word.Word
-import com.gogabot.englishwords.database.word.WordDao
+import com.gogabot.foreignwords.database.dictionary.Dictionary
+import com.gogabot.foreignwords.database.dictionary.DictionaryDao
+import com.gogabot.foreignwords.database.word.Word
+import com.gogabot.foreignwords.database.word.WordDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -31,18 +31,32 @@ public abstract class EnglishWordsRoomDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(wordDao: WordDao, dictionaryDao: DictionaryDao) {
-            // Delete all content here.
             wordDao.deleteAll()
             dictionaryDao.deleteAll()
 
-            var idDictionary: UUID = UUID.randomUUID()
-            var dictionary = Dictionary(1, "firstDictionary")
+            var dictionary =
+                Dictionary(
+                    1,
+                    "firstDictionary"
+                )
             dictionaryDao.insert(dictionary)
 
-            var word = Word(1, "Бежать", "Run", "Run beach, RUN!", 1)
+            var word = Word(
+                1,
+                "Бежать",
+                "Run",
+                "Run beach, RUN!",
+                1
+            )
             wordDao.insert(word)
 
-            word = Word(2, "Прыгать", "Jump", "Jump, Jump", 1)
+            word = Word(
+                2,
+                "Прыгать",
+                "Jump",
+                "Jump, Jump",
+                1
+            )
             wordDao.insert(word)
         }
     }

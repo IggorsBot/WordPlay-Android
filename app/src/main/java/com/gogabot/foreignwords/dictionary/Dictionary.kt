@@ -1,4 +1,4 @@
-package com.gogabot.englishwords.dictionary
+package com.gogabot.foreignwords.dictionary
 
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -11,7 +11,7 @@ import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.gogabot.englishwords.R
-import com.gogabot.englishwords.dp
+import com.gogabot.foreignwords.dp
 
 
 interface IDictionary {

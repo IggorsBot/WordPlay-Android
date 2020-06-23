@@ -14,36 +14,36 @@
         android:padding="16dp">
 
         <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:id="@+id/imageIv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageWord"
             android:src="@mipmap/ic_launcher"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/titleTv"
+            android:id="@+id/txtWord"
             android:text="Title"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/blackColor"
-            android:layout_toRightOf="@id/imageIv"
-            android:layout_toEndOf="@id/imageIv"
+            android:layout_toRightOf="@id/imageWord"
+            android:layout_toEndOf="@id/imageWord"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/descriptionTv"
-            android:text="Description"
+            android:id="@+id/example"
+            android:text="Example"
             android:textSize="18sp"
             android:textColor="@color/lightGrayColor"
-            android:layout_toRightOf="@id/imageIv"
-            android:layout_toEndOf="@id/imageIv"
+            android:layout_toRightOf="@id/imageWord"
+            android:layout_toEndOf="@id/imageWord"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_below="@id/titleTv"
+            android:layout_below="@id/txtWord"
             />
 
     </RelativeLayout>

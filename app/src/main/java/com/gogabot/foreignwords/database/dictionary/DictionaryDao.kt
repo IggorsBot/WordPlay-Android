@@ -1,4 +1,4 @@
-package com.gogabot.englishwords.database.dictionary
+package com.gogabot.foreignwords.database.dictionary
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
