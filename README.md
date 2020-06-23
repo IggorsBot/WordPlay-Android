@@ -1,2 +1,2 @@
 # WordPlay-Android
-Android app for learning English words
+Android app for learning foreign words
