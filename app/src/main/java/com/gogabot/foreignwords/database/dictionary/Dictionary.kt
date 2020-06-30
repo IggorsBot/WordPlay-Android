@@ -6,4 +6,5 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "dictionary_table")
 data class Dictionary(@PrimaryKey val id: Int,
-                      val name: String)
+                      val name: String) {
+}

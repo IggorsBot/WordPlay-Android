@@ -1,27 +1,32 @@
-package com.gogabot.foreignwords
+package com.gogabot.foreignwords.adapters
 
+import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.gogabot.englishwords.R
+import com.gogabot.foreignwords.activities.WordListActivity
 import kotlinx.android.synthetic.main.dictionary_layout.view.*
+import com.gogabot.foreignwords.database.dictionary.Dictionary
 
 
-class DictionaryListAdapter(private val arrayList: ArrayList<Dictionary>, val context: Context, val options: Bundle?):
+class DictionaryListAdapter(val context: Context, val options: Bundle?):
+
     RecyclerView.Adapter<DictionaryListAdapter.ViewHolder>(){
+    private var dictionaryList = emptyList<Dictionary>()
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(dictionaryItem: View): RecyclerView.ViewHolder(dictionaryItem) {
         fun bindItems(dictionary: Dictionary) {
             itemView.id = dictionary.id
-            itemView.nameDictionary.text = dictionary.name
-            itemView.imageDictionary.setImageResource(dictionary.image)
+            itemView.name_dictionary.text = dictionary.name
         }
     }
 
@@ -31,17 +36,28 @@ class DictionaryListAdapter(private val arrayList: ArrayList<Dictionary>, val co
     }
 
     override fun getItemCount(): Int {
-        return arrayList.size
+        return dictionaryList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(arrayList[position])
+        holder.bindItems(dictionaryList[position])
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(context, ListWordsActivity::class.java)
+            val intent = Intent(context, WordListActivity::class.java)
             intent.putExtra("DICTIONARY_ID", holder.itemView.id)
+            intent.putExtra("DICTIONARY_NAME", holder.itemView.name_dictionary.text)
             startActivity(context, intent, options)
         }
     }
+
+    fun setDictionary(dictionaryList: List<Dictionary>) {
+        this.dictionaryList = dictionaryList
+
+        notifyDataSetChanged()
+
+
+    }
+
+
 
 }

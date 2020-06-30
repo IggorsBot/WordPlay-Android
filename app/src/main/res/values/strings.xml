@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">EnglishWords</string>
-    <string name="add_dictionary">Добавить</string>
+    <string name="app_name">WordPlay</string>
+    <string name="info_for_dictionary_list_activity">Создавайте новые словари или добавляйте готовые из библиотеки</string>
+    <string name="info_for_word_list_activity">Рекомендуется ежедневно повторять слова в течении 10–15 минут</string>
+    <string name="button_add_dictionary">Добавить словарь</string>
+    <string name="button_learn">Изучить</string>
+    <string name="dictionary_name">Новый словарь</string>
+
 </resources>

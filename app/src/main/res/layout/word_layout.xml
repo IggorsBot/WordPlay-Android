@@ -43,8 +43,7 @@
             android:layout_toEndOf="@id/imageWord"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_below="@id/txtWord"
-            />
-
+            android:layout_below="@id/txtWord" />
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

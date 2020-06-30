@@ -1,4 +1,4 @@
-package com.gogabot.foreignwords
+package com.gogabot.foreignwords.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -13,12 +13,12 @@ import com.gogabot.foreignwords.database.dictionary.Dictionary
 class DictionaryViewModel(application: Application): AndroidViewModel(application) {
     private val repository: DictionaryRepository
 
-    val dictionariesList: LiveData<List<Dictionary>>
+    val dictionaryList: LiveData<List<Dictionary>>
 
     init {
         val dictionaryDao: DictionaryDao = EnglishWordsRoomDatabase.getDatabase(application, viewModelScope).dictionaryDao()
         repository = DictionaryRepository(dictionaryDao)
-        dictionariesList = repository.dictionariesList
+        dictionaryList = repository.dictionaryList
     }
 
 }

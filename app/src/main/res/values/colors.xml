@@ -6,4 +6,5 @@
     <color name="blackColor">#000</color>
     <color name="lightGrayColor">#a9a9a9</color>
     <color name="dictionaryTitle">#6f6f6f</color>
+    <color name="color_button_learn"></color>
 </resources>

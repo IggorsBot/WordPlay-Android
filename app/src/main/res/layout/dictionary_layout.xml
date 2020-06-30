@@ -21,14 +21,14 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_gravity="center"
-            android:id="@+id/imageDictionary"
+            android:id="@+id/image_dictionary"
             android:src="@mipmap/ic_launcher"
             android:layout_marginHorizontal="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/nameDictionary"
+            android:id="@+id/name_dictionary"
             android:layout_marginTop="4dp"
             android:text="Title"
             android:textSize="18sp"

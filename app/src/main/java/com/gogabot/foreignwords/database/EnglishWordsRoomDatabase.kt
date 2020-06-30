@@ -34,10 +34,9 @@ public abstract class EnglishWordsRoomDatabase : RoomDatabase() {
             wordDao.deleteAll()
             dictionaryDao.deleteAll()
 
-            var dictionary =
-                Dictionary(
+            var dictionary = Dictionary (
                     1,
-                    "firstDictionary"
+                    "FirstDictionary"
                 )
             dictionaryDao.insert(dictionary)
 
@@ -55,6 +54,33 @@ public abstract class EnglishWordsRoomDatabase : RoomDatabase() {
                 "Прыгать",
                 "Jump",
                 "Jump, Jump",
+                1
+            )
+            wordDao.insert(word)
+
+            word = Word(
+                3,
+                "Гулять",
+                "Walk",
+                "Walk Example",
+                1
+            )
+            wordDao.insert(word)
+
+            word = Word(
+                4,
+                "Петь",
+                "Sing",
+                "Sing example",
+                1
+            )
+            wordDao.insert(word)
+
+            word = Word(
+                5,
+                "Песня",
+                "Song",
+                "Song example",
                 1
             )
             wordDao.insert(word)
@@ -77,9 +103,7 @@ public abstract class EnglishWordsRoomDatabase : RoomDatabase() {
                     EnglishWordsRoomDatabase::class.java,
                     "word_database"
                 ).addCallback(
-                    WordDatabaseCallback(
-                        scope
-                    )
+                    WordDatabaseCallback(scope)
                 ).build()
                 INSTANCE = instance
                 return instance

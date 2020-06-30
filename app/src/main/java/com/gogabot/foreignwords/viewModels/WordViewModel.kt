@@ -1,4 +1,4 @@
-package com.gogabot.foreignwords
+package com.gogabot.foreignwords.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

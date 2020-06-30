@@ -1,23 +1,25 @@
-package com.gogabot.foreignwords
+package com.gogabot.foreignwords.adapters
 
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gogabot.englishwords.R
 import kotlinx.android.synthetic.main.word_layout.view.*
+import com.gogabot.foreignwords.database.word.Word
 
-class ListWordsAdapter(private val arrayList: ArrayList<Word>, val context: Context):
-    RecyclerView.Adapter<ListWordsAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class WordListAdapter(val context: Context):
+    RecyclerView.Adapter<WordListAdapter.ViewHolder>() {
+
+    private var wordList = emptyList<Word>()
+
+    class ViewHolder(wordView: View): RecyclerView.ViewHolder(wordView) {
         fun bindItems(word: Word) {
-            itemView.txtWord.text = word.title
-            itemView.example.text = word.description
-            itemView.imageWord.setImageResource(word.image)
+            itemView.txtWord.text = word.enWord
+            itemView.example.text = word.example
         }
     }
 
@@ -27,13 +29,18 @@ class ListWordsAdapter(private val arrayList: ArrayList<Word>, val context: Cont
     }
 
     override fun getItemCount(): Int {
-        return arrayList.size
+        return wordList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(arrayList[position])
+        holder.bindItems(wordList[position])
 
         holder.itemView.setOnClickListener{
         }
+    }
+
+    fun setWords(wordList: List<Word>) {
+        this.wordList = wordList
+        notifyDataSetChanged()
     }
 }

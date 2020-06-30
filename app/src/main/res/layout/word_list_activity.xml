@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:background="@drawable/top_green_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:id="@+id/dictionary_name"
+                android:text="@string/dictionary_name"
+                android:textSize="22sp"
+                android:textColor="#FFFFFF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="80dp"
+            android:id="@+id/menuTip"
+            android:background="@drawable/bottom_green_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="6dp"
+                android:text="@string/info_for_word_list_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"/>
+
+        </RelativeLayout>
+        <Button
+            android:id="@+id/button_learn"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="@string/button_learn"
+            android:textColor="#006a4e"
+            android:textAllCaps="false"
+            android:textSize="21sp"
+            android:layout_marginTop="195dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginHorizontal="70dp"
+            android:background="@drawable/button_learn"
+            />
+
+        <ScrollView
+            android:layout_marginTop="220dp"
+            android:id="@+id/dict_list_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:id="@+id/dictionary_list"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <RelativeLayout
+                    android:background="@drawable/grey_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <GridLayout
+                        android:id="@+id/dictListView"
+                        android:columnCount="2"
+                        android:rowCount="3"
+                        android:alignmentMode="alignMargins"
+                        android:columnOrderPreserved="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="40dp"
+                                android:id="@+id/wordsRecyclerView" />
+
+                        </LinearLayout>
+
+                    </GridLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
