@@ -1,10 +1,12 @@
-package com.gogabot.foreignwords.activities
+package com.gogabot.foreignwords.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,14 +15,11 @@ import com.gogabot.englishwords.R
 import com.gogabot.foreignwords.adapters.WordListAdapter
 import com.gogabot.foreignwords.viewModels.WordViewModel
 
-
 class WordListActivity: AppCompatActivity() {
     val TAG = "WordListActivity"
 
-
     private var dictionaryID: Int = 0
     private lateinit var wordViewModel: WordViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +32,9 @@ class WordListActivity: AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = wordListAdapter
 
-        initDictionary(wordListAdapter)
         getWordsOfDictionary(wordListAdapter)
+        initDictionaryName()
+        setListenerOnButton(wordListAdapter, savedInstanceState)
     }
 
     private fun getWordsOfDictionary(wordListAdapter: WordListAdapter) {
@@ -45,20 +45,17 @@ class WordListActivity: AppCompatActivity() {
         })
     }
 
-    private fun initDictionary(wordListAdapter: WordListAdapter) {
-        initDictionaryName()
-        setListenerOnButton(wordListAdapter)
-    }
-
-    private fun setListenerOnButton(wordListAdapter: WordListAdapter) {
+    private fun setListenerOnButton(wordListAdapter: WordListAdapter, options: Bundle?) {
         val buttonLearn = findViewById<Button>(R.id.button_learn)
 
         buttonLearn.setOnClickListener{
-            Log.d(TAG, "Click click")
+            Log.d(TAG, "Click")
             if(wordListAdapter.itemCount < 5) {
                 Log.d(TAG, "Необходимо не менее 5 слов в словаре для изучения")
             } else {
-                Log.d(TAG, "Изучаем слова")
+                val intent = Intent(this, StudyActivity::class.java)
+                intent.putExtra("DICTIONARY_ID", dictionaryID)
+                ContextCompat.startActivity(this, intent, options)
             }
         }
     }

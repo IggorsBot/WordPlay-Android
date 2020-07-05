@@ -6,26 +6,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.gogabot.foreignwords.database.word.Word
 import com.gogabot.foreignwords.database.word.WordRepository
-import com.gogabot.foreignwords.database.EnglishWordsRoomDatabase
+import com.gogabot.foreignwords.database.WordPlayDB
+import com.gogabot.foreignwords.database.word.WordDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class WordViewModel(application: Application): AndroidViewModel(application) {
-    private val repository: WordRepository
+    @set:Inject
+    var wordRepository: WordRepository
 
-    val wordsFromAllDicionaries: LiveData<List<Word>>
+    private val wordsFromAllDicionaries: LiveData<List<Word>>
 
     init {
-        val wordsDao = EnglishWordsRoomDatabase.getDatabase(application, viewModelScope).wordDao()
-        repository = WordRepository(wordsDao)
-        wordsFromAllDicionaries = repository.wordsFromAllDicionaries
+        val wordsDao = WordPlayDB.getDatabase(application, viewModelScope).getWordDao()
+        wordRepository = WordDataSource(wordsDao)
+        wordsFromAllDicionaries = wordRepository.alphabetizedWords()
     }
 
     fun insert(word: Word) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insert(word)
+        wordRepository.insert(word)
     }
 
     fun getWordsOfDictionary(id: Int): LiveData<List<Word>> {
-       return repository.getWordsOfDictionary(id)
+       return wordRepository.getWordsOfDictionary(id)
     }
 }

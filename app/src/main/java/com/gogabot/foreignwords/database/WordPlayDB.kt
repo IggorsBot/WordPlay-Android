@@ -11,12 +11,12 @@ import com.gogabot.foreignwords.database.word.Word
 import com.gogabot.foreignwords.database.word.WordDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import java.util.*
 
-@Database(entities = arrayOf(Word::class, Dictionary::class), version = 1, exportSchema = false)
-public abstract class EnglishWordsRoomDatabase : RoomDatabase() {
-    abstract fun wordDao(): WordDao
-    abstract fun dictionaryDao(): DictionaryDao
+@Database(entities = [Word::class, Dictionary::class], version = 1, exportSchema = false)
+public abstract class WordPlayDB : RoomDatabase() {
+
+    abstract fun getWordDao(): WordDao
+    abstract fun getDictionaryDao(): DictionaryDao
 
 
     private class WordDatabaseCallback(private val scope: CoroutineScope) : RoomDatabase.Callback() {
@@ -25,7 +25,7 @@ public abstract class EnglishWordsRoomDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    populateDatabase(database.wordDao(), database.dictionaryDao())
+                    populateDatabase(database.getWordDao(), database.getDictionaryDao())
                 }
             }
         }
@@ -89,27 +89,21 @@ public abstract class EnglishWordsRoomDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANCE: EnglishWordsRoomDatabase? = null
+        private var INSTANCE: WordPlayDB? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): EnglishWordsRoomDatabase {
-            val tempInstance =
-                INSTANCE
+        fun getDatabase(context: Context, scope: CoroutineScope): WordPlayDB {
+            val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
             }
             synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    EnglishWordsRoomDatabase::class.java,
-                    "word_database"
-                ).addCallback(
-                    WordDatabaseCallback(scope)
-                ).build()
+                val instance =
+                    Room.databaseBuilder(context.applicationContext, WordPlayDB::class.java, "wordplay-db")
+                        .addCallback(WordDatabaseCallback(scope))
+                        .build()
                 INSTANCE = instance
                 return instance
             }
         }
     }
-
-
 }

@@ -1,16 +1,13 @@
 package com.gogabot.foreignwords.database.word
 
 import androidx.lifecycle.LiveData
+import javax.inject.Inject
 
 
-class WordRepository(private val wordDao: WordDao) {
-    val wordsFromAllDicionaries: LiveData<List<Word>> = wordDao.getAlphabetizedWords()
 
-    fun getWordsOfDictionary(id: Int): LiveData<List<Word>> {
-        return wordDao.getWordsOfDictionary(id)
-    }
+public interface WordRepository {
+    fun alphabetizedWords(): LiveData<List<Word>>
+    fun getWordsOfDictionary(id: Int): LiveData<List<Word>>
 
-    suspend fun insert(word: Word) {
-        wordDao.insert(word)
-    }
+    suspend fun insert(word: Word)
 }
